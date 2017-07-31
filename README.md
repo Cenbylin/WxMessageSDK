@@ -10,9 +10,9 @@
 如果你使用 Maven，你只需要在 pom.xml 中添加下面的依赖：
 ```xml
 <dependency>
-	<groupId>com.github.cenbylin</groupId>
+    <groupId>com.github.cenbylin</groupId>
     <artifactId>WxMessageSDK</artifactId>
-	<version>最新版本</version>
+    <version>最新版本</version>
 </dependency>
 ```
 ### 1. 获取你的公众号开发配置
@@ -20,6 +20,7 @@
 ![mp](./project-resource/mp.png)
 ### 2. 创建配置
 创建一个继承WxConig类的MyConfig类，并把appid和secret写在覆盖的方法里
+
 ![myconfig](./project-resource/myconfig.png)
 ```java
 import com.github.cenbylin.wxmessage.sdk.dev.WxConfig;
@@ -37,7 +38,9 @@ public class MyConfig extends WxConfig {
 ```
 ### 3.编写处理器代码
 继承AbstractMessageProcessor即可，可以选择覆盖如下几个方法：
+
 ![method](./project-resource/method.png)
+
 当接收了微信消息，会调用相应的这些方法；返回值对应了不同的微信回复内容。
 
 | 返回类型 | 回复 |
@@ -45,6 +48,7 @@ public class MyConfig extends WxConfig {
 |String|文本|
 |NewsResBean|图文|
 |ImageResBean|图片|
+
 **示例**
 ![processor](./project-resource/exampleprocessor.png)
 **详细示例见 example/processorExam.java**
@@ -67,9 +71,38 @@ public class MyConfig extends WxConfig {
 ```
 #### 4.2 普通模式
 同样地生成消息接入的WebMessageAccess对象，不过这个实例需要自行管理
-![generalCode](./project-resource/generalCode.png)
+```java
+WxConfig myConfig = new WxConfig() {
+        @Override
+        public String getAppID() {
+            return "{appid}";
+        }
+        @Override
+        public String getSecret() {
+            return "{secret}";
+        }
+    };
+// 添加自定义处理器
+myConfig.addProcessor(new SimpleProcessor());
+myConfig.addProcessor(new SimpleProcessor1());
+myConfig.addProcessor(new SimpleProcessor2());
+// 创建消息接入
+WebMessageAccess webMessageAccess = new WebMessageAccess(myConfig);
+```
 ### 5. 接入
 不管是用servlet还是springmvc等方式，只需要在微信消息处理的地方托管WebMessageAccess
-![doMsg](./project-resource/doMsg.png)
+```java
+/**
+	 * 微信公众号消息处理
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping("/doMessage.do")
+	public void doMsg(HttpServletRequest request,
+					  HttpServletResponse response) throws Exception{
+        webMessageAccess.processForNoAuthorization(request, response);
+	}
+```
 ### 6. 在微信公众平台做接入配置
 ![mpConfig](./project-resource/mpConfig.png)
