@@ -30,7 +30,7 @@ public abstract class AbstractMessageProcessor implements BasicMessageProcessor{
      * @param url
      * @return
      */
-    public Object doUrl(String openid, String url) {
+    public Object doLink(String openid, String url) {
         return true;
     }
 }

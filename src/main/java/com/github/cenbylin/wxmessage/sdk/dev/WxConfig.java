@@ -11,7 +11,7 @@ import java.util.Map;
  * Created by Cenbylin on 2017/7/29.
  */
 public abstract class WxConfig {
-    LinkedList messageProcessorList = new LinkedList();
+    public LinkedList messageProcessorList = new LinkedList();
     private String accessToken;
     //此方法被覆盖，证明托管
     //定时任务线程

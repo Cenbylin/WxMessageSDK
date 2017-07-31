@@ -75,7 +75,6 @@ public class JobExecutiveController implements Runnable {
                     }
                 }
             }else{
-                logger.info("process message:" + msb.getContent());
                 //开始处理
                 try {
                     processJob(msb);
@@ -97,15 +96,24 @@ public class JobExecutiveController implements Runnable {
          */
         Object res = "";
         if("text".equals(msb.getMsgType())){
+            logger.info("process message:" + msb.getContent());
             for(Object o:messageProcessorList){
                 res = ((BasicMessageProcessor)o)
                         .doText(msb.getFromUserName(), msb.getContent());
                 resultProcessor.executeRes(res, msb.getFromUserName());
             }
-        } else if ("url".equals(msb.getMsgType())){
+        } else if ("link".equals(msb.getMsgType())){
+            logger.info("process message:" + msb.getUrl());
             for(Object o:messageProcessorList){
                 res = ((BasicMessageProcessor)o)
-                        .doUrl(msb.getFromUserName(), msb.getContent());
+                        .doLink(msb.getFromUserName(), msb.getUrl());
+                resultProcessor.executeRes(res, msb.getFromUserName());
+            }
+        } else if ("image".equals(msb.getMsgType())){
+            logger.info("process message:" + msb.getUrl());
+            for(Object o:messageProcessorList){
+                res = ((BasicMessageProcessor)o)
+                        .doPic(msb.getFromUserName(), msb.getPicUrl());
                 resultProcessor.executeRes(res, msb.getFromUserName());
             }
         }

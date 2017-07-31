@@ -16,8 +16,17 @@ public class MessageBean {
 	private String Event;
 	private String EventKey;
 	private String ticket;
+	private String url;//链接消息
 
-	/**
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    /**
 	 * 用属性集合map初始化MessageBean
 	 * 
 	 * @param map
@@ -35,6 +44,7 @@ public class MessageBean {
 		ThumbMediaId = map.get("ThumbMediaId");
 		Event = map.get("Event");
 		EventKey = map.get("EventKey");
+		url = map.get("Url");
 	}
 
 	@Override

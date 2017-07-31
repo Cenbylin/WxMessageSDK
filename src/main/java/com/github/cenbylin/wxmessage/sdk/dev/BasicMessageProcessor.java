@@ -7,5 +7,5 @@ package com.github.cenbylin.wxmessage.sdk.dev;
 public interface BasicMessageProcessor {
     Object doText(String openid, String text);
     Object doPic(String openid, String picUrl);
-    Object doUrl(String openid, String url);
+    Object doLink(String openid, String url);
 }
