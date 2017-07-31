@@ -51,7 +51,29 @@ public class MyConfig extends WxConfig {
 
 **示例**
 
-![processor](./project-resource/exampleprocessor.png)
+```java
+@Component
+public class SimpleProcessor extends AbstractMessageProcessor {
+    @Override
+    public Object doText(String openid, String text) {
+        //回复图文
+        NewsResBean n = new NewsResBean();
+        n.addArticle(
+                "标题1",
+                "神奇的东方树叶",
+                "http://www.baidu.com",
+                "bd_logo1_31bdc765.png"
+        );
+        n.addArticle(
+                "标题2",
+                "神奇的东方树叶",
+                "http://www.baidu.com",
+                "bd_logo1_31bdc765.png"
+        );
+        return n;
+    }
+}
+```
 
 **详细示例见 example/processorExam.java**
 ### 4. 实例化接入对象
