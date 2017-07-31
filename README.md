@@ -50,7 +50,9 @@ public class MyConfig extends WxConfig {
 |ImageResBean|图片|
 
 **示例**
+
 ![processor](./project-resource/exampleprocessor.png)
+
 **详细示例见 example/processorExam.java**
 ### 4. 实例化接入对象
 #### 4.1 集成spring方式（推荐）
