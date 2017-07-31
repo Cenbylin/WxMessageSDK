@@ -117,16 +117,16 @@ WebMessageAccess webMessageAccess = new WebMessageAccess(myConfig);
 不管是用servlet还是springmvc等方式，只需要在微信消息处理的地方托管WebMessageAccess
 ```java
 /**
-	 * 微信公众号消息处理
-	 * @param request
-	 * @param response
-	 * @throws Exception
-	 */
-	@RequestMapping("/doMessage.do")
-	public void doMsg(HttpServletRequest request,
-					  HttpServletResponse response) throws Exception{
-        webMessageAccess.processForNoAuthorization(request, response);
-	}
+ * 微信公众号消息处理
+ * @param request
+ * @param response
+ * @throws Exception
+ */
+@RequestMapping("/doMessage.do")
+public void doMsg(HttpServletRequest request,
+                  HttpServletResponse response) throws Exception{
+    webMessageAccess.processForNoAuthorization(request, response);
+}
 ```
 ### 6. 在微信公众平台做接入配置
 ![mpConfig](./project-resource/mpConfig.png)
