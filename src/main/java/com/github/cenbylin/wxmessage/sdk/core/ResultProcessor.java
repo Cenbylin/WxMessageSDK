@@ -1,10 +1,12 @@
 package com.github.cenbylin.wxmessage.sdk.core;
 
+import com.github.cenbylin.wxmessage.sdk.dev.AbstractMessageProcessor;
 import com.github.cenbylin.wxmessage.sdk.dev.ImageResBean;
 import com.github.cenbylin.wxmessage.sdk.dev.NewsResBean;
 import com.github.cenbylin.wxmessage.sdk.dev.WxConfig;
 import com.github.cenbylin.wxmessage.sdk.util.HttpRequestTool;
 import com.github.cenbylin.wxmessage.sdk.util.XMLUtil;
+import com.github.cenbylin.wxmessage.sdk.web.WebMessageAccess;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 
@@ -131,30 +133,5 @@ public class ResultProcessor {
             }
         }
         return resText;
-    }
-
-    public static void main(String[] args) throws Exception {
-        WxConfig config = new WxConfig() {
-            @Override
-            public String getAppID() {
-                return "wx2e7d71280147d5a5";
-            }
-
-            @Override
-            public String getSecret() {
-                return "bb54272fc561876a7c4f82d347f9c584";
-            }
-        };
-        ResultProcessor r = new ResultProcessor(config);
-        r.executeRes("消息", "openid");
-
-        File f = new File("D:\\1.jpg");
-        InputStream in = new FileInputStream(f);
-        r.executeRes( new ImageResBean(in, "jpg"), "1231");
-
-        NewsResBean n = new NewsResBean();
-        n.addArticle("211","222","http://aas.com", "http://www.baidu.com");
-        n.addArticle("111","222","http://aas.com", "http://www.baidu.com");
-        r.executeRes(n, "openid");
     }
 }
