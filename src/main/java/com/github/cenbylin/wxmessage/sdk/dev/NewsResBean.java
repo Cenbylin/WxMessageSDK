@@ -8,11 +8,27 @@ import java.util.List;
  */
 public class NewsResBean {
     public List<Article> list = new LinkedList<Article>();
-    public class Article{
+    public class Article {
         private String title;
         private String description;
         private String url;
         private String picurl;
+
+        public String getTitle() {
+            return title;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public String getPicurl() {
+            return picurl;
+        }
 
         public Article(String title, String description, String url, String picurl) {
             this.title = title;

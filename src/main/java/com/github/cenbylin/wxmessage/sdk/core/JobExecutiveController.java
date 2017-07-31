@@ -2,29 +2,24 @@ package com.github.cenbylin.wxmessage.sdk.core;
 
 import com.github.cenbylin.wxmessage.sdk.dev.BasicMessageProcessor;
 import com.github.cenbylin.wxmessage.sdk.dev.WxConfig;
-import com.github.cenbylin.wxmessage.sdk.util.HttpRequestTool;
-import com.github.cenbylin.wxmessage.sdk.util.MessageCreator;
-import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by Cenbylin on 2017/7/9.
  */
 public class JobExecutiveController implements Runnable {
+    private Random r = new Random();
     Logger logger = Logger.getLogger(JobExecutiveController.class);
     //任务队列
     private LinkedList<MessageBean> jobQueue = new LinkedList<MessageBean>();
     //是否阻塞
     public volatile boolean wait;
-    //消息创建工具
-    MessageCreator messageCreator = new MessageCreator();
 
     private WxConfig wxConfig;
-    private LinkedList messageProcessorList;
+    private LinkedList<? extends BasicMessageProcessor> messageProcessorList;
     private ResultProcessor resultProcessor;
     /**
      * 接收配置的控制器
@@ -87,7 +82,7 @@ public class JobExecutiveController implements Runnable {
     }
 
     /**
-     * 消息任务处理（core）
+     * 消息任务处理（core）（异步方式）
      * @param msb
      */
     private void processJob(MessageBean msb) throws Exception {
@@ -96,26 +91,53 @@ public class JobExecutiveController implements Runnable {
          */
         Object res = "";
         if("text".equals(msb.getMsgType())){
-            logger.info("process message:" + msb.getContent());
-            for(Object o:messageProcessorList){
-                res = ((BasicMessageProcessor)o)
-                        .doText(msb.getFromUserName(), msb.getContent());
+            logger.info("process text message:" + msb.getContent());
+            for(BasicMessageProcessor o:messageProcessorList){
+                res = o.doText(msb.getFromUserName(), msb.getContent());
                 resultProcessor.executeRes(res, msb.getFromUserName());
             }
         } else if ("link".equals(msb.getMsgType())){
-            logger.info("process message:" + msb.getUrl());
-            for(Object o:messageProcessorList){
-                res = ((BasicMessageProcessor)o)
-                        .doLink(msb.getFromUserName(), msb.getUrl());
+            logger.info("process link message:" + msb.getUrl());
+            for(BasicMessageProcessor o:messageProcessorList){
+                res = o.doLink(msb.getFromUserName(), msb.getUrl());
                 resultProcessor.executeRes(res, msb.getFromUserName());
             }
         } else if ("image".equals(msb.getMsgType())){
-            logger.info("process message:" + msb.getUrl());
-            for(Object o:messageProcessorList){
-                res = ((BasicMessageProcessor)o)
-                        .doPic(msb.getFromUserName(), msb.getPicUrl());
+            logger.info("process image message:" + msb.getPicUrl());
+            for(BasicMessageProcessor o:messageProcessorList){
+                res = o.doPic(msb.getFromUserName(), msb.getPicUrl());
                 resultProcessor.executeRes(res, msb.getFromUserName());
             }
         }
+        logger.info("process finish");
+    }
+
+    /**
+     * 消息任务处理（core）（返回结果方式）
+     * @param msb
+     */
+    public String getJobRes(MessageBean msb) throws Exception {
+        //确定处理器(随机方式)
+        int length = messageProcessorList.size();
+        BasicMessageProcessor processor = messageProcessorList.get(r.nextInt(length));
+        /**
+         * proccess
+         */
+        Object res = "";
+        if("text".equals(msb.getMsgType())) {
+            logger.info("process text message:" + msb.getContent());
+            res = processor.doText(msb.getFromUserName(), msb.getContent());
+            return resultProcessor.convertRes(res, msb.getFromUserName(), msb.getToUserName());
+        } else if ("link".equals(msb.getMsgType())) {
+            logger.info("process link message:" + msb.getUrl());
+            res = processor.doLink(msb.getFromUserName(), msb.getUrl());
+            return resultProcessor.convertRes(res, msb.getFromUserName(), msb.getToUserName());
+        } else if ("image".equals(msb.getMsgType())) {
+            logger.info("process image message:" + msb.getPicUrl());
+            res = processor.doPic(msb.getFromUserName(), msb.getPicUrl());
+            return resultProcessor.convertRes(res, msb.getFromUserName(), msb.getToUserName());
+        }
+        logger.info("process finish");
+        return null;
     }
 }

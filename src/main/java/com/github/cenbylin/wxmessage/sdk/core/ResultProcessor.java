@@ -4,15 +4,14 @@ import com.github.cenbylin.wxmessage.sdk.dev.ImageResBean;
 import com.github.cenbylin.wxmessage.sdk.dev.NewsResBean;
 import com.github.cenbylin.wxmessage.sdk.dev.WxConfig;
 import com.github.cenbylin.wxmessage.sdk.util.HttpRequestTool;
+import com.github.cenbylin.wxmessage.sdk.util.XMLUtil;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Cenbylin on 2017/7/29.
@@ -77,7 +76,61 @@ public class ResultProcessor {
         }
         //发送请求
         logger.info(HttpRequestTool.sendPost(postUrl, postText, "utf-8"));
-        //System.out.println(postText);
+    }
+
+    /**
+     * 转换成xml（微信服务器接收方式）
+     * @param res
+     * @param openid
+     * @return
+     * @throws Exception
+     */
+    public String convertRes(Object res, String openid, String from) throws Exception {
+        Map<String, Object> xmlMap = new HashMap<String, Object>();
+        String resText = null;
+        if (res==null){
+            return null;
+        }else if (res instanceof String) {//文本回复
+            logger.info("execute:reply text '" + (String) res + "'");
+            xmlMap.put("ToUserName", openid);
+            xmlMap.put("FromUserName", from);
+            xmlMap.put("CreateTime", Long.toString(new Date().getTime()));
+            xmlMap.put("MsgType", "text");
+            xmlMap.put("Content", (String) res);
+            resText = XMLUtil.mapToXmlDeep(xmlMap);
+        } else if (res instanceof ImageResBean){//图片回复
+            // 上传媒体
+            ImageResBean i = (ImageResBean)res;
+            String mediaId = HttpRequestTool.uploadMedia(wxConfig.getAccessToken(), i.getIn(), "image/." + i.getFormat());
+            xmlMap.put("ToUserName", openid);
+            xmlMap.put("FromUserName", from);
+            xmlMap.put("CreateTime", Long.toString(new Date().getTime()));
+            xmlMap.put("MsgType", "image");
+            xmlMap.put("MediaId", mediaId);
+            resText = XMLUtil.mapToXmlDeep(xmlMap);
+        } else if (res instanceof NewsResBean){//图文回复
+            xmlMap.put("ToUserName", openid);
+            xmlMap.put("FromUserName", from);
+            xmlMap.put("MsgType", "news");
+            xmlMap.put("CreateTime", Long.toString(new Date().getTime()));
+            List<Map<String, String>> mapList = new LinkedList<Map<String, String>>();
+            for (NewsResBean.Article bean : ((NewsResBean)res).list){
+                Map<String, String> articleMap = new HashMap<String, String>();
+                articleMap.put("Title", bean.getTitle());
+                articleMap.put("Description", bean.getDescription());
+                articleMap.put("PicUrl", bean.getPicurl());
+                articleMap.put("Url", bean.getUrl());
+                mapList.add(articleMap);
+            }
+            xmlMap.put("ArticleCount", String.valueOf(mapList.size()));
+            xmlMap.put("Articles", mapList);
+            resText = XMLUtil.mapToXmlDeep(xmlMap);
+        } else if (res instanceof List){//多重回复，递归本函数
+            for (Object o : (List)res){
+                executeRes(o, openid);
+            }
+        }
+        return resText;
     }
 
     public static void main(String[] args) throws Exception {

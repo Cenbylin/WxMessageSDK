@@ -58,6 +58,36 @@ public class WebMessageAccess {
         }
     }
     /**
+     * 未认证的公众号消息处理
+     * @param request
+     * @param response
+     * @throws Exception
+     */
+    public void processForNoAuthorization(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        //1、预处理
+        preDoMsg(request, response);
+
+        //2、初始化消息模型，装载信息
+        InputStream inputStream = request.getInputStream();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+        final StringBuffer stringBuffer = new StringBuffer();
+        String line = null;
+        while ((line = bufferedReader.readLine()) != null) {
+            stringBuffer.append(line);
+        }
+        String resp = stringBuffer.toString();
+        MessageBean msb = new MessageBean();
+        Map<String, String> map = XMLUtil.xmlToMap(resp);
+        //装载
+        msb.loadMap(map);
+
+        //3、处理结果
+        String content = jobExecutiveController.getJobRes(msb);
+
+        //4、直接返回success(在客服接口异步处理)
+        writeString(response, content);
+    }
+    /**
      * 直接写出字符流
      * @param response
      * @param content
