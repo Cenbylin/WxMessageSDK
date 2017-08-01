@@ -1,6 +1,6 @@
 ![Logo of the project](./project-resource/logo.png)
 # WxMessageSDK 轻量的微信公众号消息处理SDK
-> 简化和微信服务器交互的繁琐部分
+> 简化和微信服务器交互的繁琐部分，支持未认证/认证公众号。
 
 ## 快速开始
 
@@ -75,6 +75,7 @@ public class SimpleProcessor extends AbstractMessageProcessor {
 }
 ```
 
+注：你可以写多个processor并使用，认证公众号可以多个回复，而未认证的公众号随机取一个processor。
 **详细示例见 example/processorExam.java**
 ### 4. 实例化接入对象
 #### 4.1 集成spring方式（推荐）
@@ -125,7 +126,10 @@ WebMessageAccess webMessageAccess = new WebMessageAccess(myConfig);
 @RequestMapping("/doMessage.do")
 public void doMsg(HttpServletRequest request,
                   HttpServletResponse response) throws Exception{
+    //未认证公众号
     webMessageAccess.processForNoAuthorization(request, response);
+    //认证公众号
+    //webMessageAccess.processForAuthorization(request, response);
 }
 ```
 ### 6. 在微信公众平台做接入配置
