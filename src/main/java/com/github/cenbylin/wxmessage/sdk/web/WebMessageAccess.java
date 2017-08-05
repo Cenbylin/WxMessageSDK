@@ -21,9 +21,9 @@ public class WebMessageAccess {
 
     /**
      * 认证的公众号消息处理
-     * @param request
-     * @param response
-     * @throws Exception
+     * @param request request
+     * @param response response
+     * @throws Exception 异常
      */
     public void processForAuthorization(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //1、预处理
@@ -59,9 +59,9 @@ public class WebMessageAccess {
     }
     /**
      * 未认证的公众号消息处理
-     * @param request
-     * @param response
-     * @throws Exception
+     * @param request request
+     * @param response response
+     * @throws Exception 异常
      */
     public void processForNoAuthorization(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //1、预处理
@@ -89,9 +89,9 @@ public class WebMessageAccess {
     }
     /**
      * 直接写出字符流
-     * @param response
-     * @param content
-     * @throws Exception
+     * @param response response
+     * @param content content
+     * @throws Exception 异常
      */
     public void writeString(HttpServletResponse response, String content) throws Exception{
         PrintWriter out = response.getWriter();
@@ -101,9 +101,9 @@ public class WebMessageAccess {
     }
     /**
      * 预处理（开发者接入等）
-     * @param request
-     * @param response
-     * @throws Exception
+     * @param request request
+     * @param response response
+     * @throws Exception 异常
      */
     private void preDoMsg(HttpServletRequest request, HttpServletResponse response) throws Exception{
         //判断是否初次接入

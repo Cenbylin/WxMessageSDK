@@ -16,13 +16,7 @@ public class MsgBeanPostPrcessorImpl implements BeanPostProcessor {
         this.wxConfig = wxConfig;
     }
 
-    /**
-     * 前处理
-     * @param o
-     * @param s
-     * @return
-     * @throws BeansException
-     */
+
     public Object postProcessBeforeInitialization(Object o, String s) throws BeansException {
         return o;
     }

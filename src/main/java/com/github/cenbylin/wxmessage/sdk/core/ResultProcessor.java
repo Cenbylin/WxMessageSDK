@@ -28,8 +28,9 @@ public class ResultProcessor {
 
     /**
      * 执行proccessor的结果
-     * @param res
+     * @param res 处理结果
      * @param openid 默认的对方openid
+     * @throws Exception 异常
      */
     public void executeRes(Object res, String openid) throws Exception {
         //客服接口
@@ -82,10 +83,11 @@ public class ResultProcessor {
 
     /**
      * 转换成xml（微信服务器接收方式）
-     * @param res
-     * @param openid
-     * @return
-     * @throws Exception
+     * @param res 处理器的结果
+     * @param openid openid
+     * @param from from
+     * @return web请求的返回xml
+     * @throws Exception 异常
      */
     public String convertRes(Object res, String openid, String from) throws Exception {
         Map<String, Object> xmlMap = new HashMap<String, Object>();

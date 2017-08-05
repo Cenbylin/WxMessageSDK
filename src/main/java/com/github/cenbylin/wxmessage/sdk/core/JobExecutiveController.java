@@ -23,7 +23,7 @@ public class JobExecutiveController implements Runnable {
     private ResultProcessor resultProcessor;
     /**
      * 接收配置的控制器
-     * @param wxConfig
+     * @param wxConfig 配置
      */
     public JobExecutiveController(WxConfig wxConfig) {
         this.wxConfig = wxConfig;
@@ -35,8 +35,8 @@ public class JobExecutiveController implements Runnable {
 
     /**
      * 增加一个任务
-     * @param msb
-     * @return
+     * @param msb 任务实体
+     * @return 是否成功
      */
     public synchronized boolean addJob(MessageBean msb){
         jobQueue.addLast(msb);
@@ -45,7 +45,7 @@ public class JobExecutiveController implements Runnable {
 
     /**
      * 获得一个任务
-     * @return
+     * @return 任务实体
      */
     public synchronized MessageBean getJob(){
         if (jobQueue!=null && jobQueue.size()>0){
@@ -83,7 +83,7 @@ public class JobExecutiveController implements Runnable {
 
     /**
      * 消息任务处理（core）（异步方式）
-     * @param msb
+     * @param msb 任务实体
      */
     private void processJob(MessageBean msb) throws Exception {
         /**
@@ -114,7 +114,9 @@ public class JobExecutiveController implements Runnable {
 
     /**
      * 消息任务处理（core）（返回结果方式）
-     * @param msb
+     * @param msb 任务实体
+     * @return 处理结果
+     * @throws Exception 异常
      */
     public String getJobRes(MessageBean msb) throws Exception {
         //确定处理器(随机方式)

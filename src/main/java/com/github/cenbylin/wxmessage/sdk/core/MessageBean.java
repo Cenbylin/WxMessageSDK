@@ -29,7 +29,7 @@ public class MessageBean {
     /**
 	 * 用属性集合map初始化MessageBean
 	 * 
-	 * @param map
+	 * @param map map
 	 */
 	public void loadMap(Map<String, String> map) {
 		ToUserName = map.get("ToUserName");

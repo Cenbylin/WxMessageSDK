@@ -1,0 +1,14 @@
+com\github\cenbylin\wxmessage\sdk\dev\ImageResBean.class
+com\github\cenbylin\wxmessage\sdk\core\MessageBean.class
+com\github\cenbylin\wxmessage\sdk\dev\NewsResBean.class
+com\github\cenbylin\wxmessage\sdk\dev\BasicMessageProcessor.class
+com\github\cenbylin\wxmessage\sdk\util\HttpRequestTool.class
+com\github\cenbylin\wxmessage\sdk\dev\WxConfig$1.class
+com\github\cenbylin\wxmessage\sdk\core\JobExecutiveController.class
+com\github\cenbylin\wxmessage\sdk\web\WebMessageAccess.class
+com\github\cenbylin\wxmessage\sdk\core\ResultProcessor.class
+com\github\cenbylin\wxmessage\sdk\support\MsgBeanPostPrcessorImpl.class
+com\github\cenbylin\wxmessage\sdk\util\XMLUtil.class
+com\github\cenbylin\wxmessage\sdk\dev\WxConfig.class
+com\github\cenbylin\wxmessage\sdk\dev\NewsResBean$Article.class
+com\github\cenbylin\wxmessage\sdk\dev\AbstractMessageProcessor.class

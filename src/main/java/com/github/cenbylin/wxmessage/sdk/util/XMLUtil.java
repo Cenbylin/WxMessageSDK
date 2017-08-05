@@ -29,7 +29,7 @@ public class XMLUtil {
      *
      * @param strXML XML字符串
      * @return XML数据转换后的Map
-     * @throws Exception
+     * @throws Exception 异常
      */
     public static Map<String, String> xmlToMap(String strXML) throws Exception {
         Map<String, String> data = new HashMap<String, String>();
@@ -60,7 +60,7 @@ public class XMLUtil {
      *
      * @param data Map类型数据
      * @return XML格式的字符串
-     * @throws Exception
+     * @throws Exception 异常
      */
     public static String mapToXml(Map<String, String> data, String rootName) throws Exception {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -99,7 +99,7 @@ public class XMLUtil {
      *
      * @param data Map类型数据
      * @return XML格式的字符串
-     * @throws Exception
+     * @throws Exception 异常
      */
     public static String mapToXml(Map<String, String> data) throws Exception {
         return mapToXml(data, "xml");
@@ -109,17 +109,17 @@ public class XMLUtil {
      *
      * @param data Map类型数据
      * @return XML格式的字符串
-     * @throws Exception
+     * @throws Exception 异常
      */
     public static String mapToXmlDeep(Map<String, Object> data) throws Exception {
         return mapToXmlDeep(data, "xml");
     }
     /**
      * 将Map转换为XML格式的字符串-递归深度
-     *
+     * @param rootName rootName
      * @param data Map类型数据
      * @return XML格式的字符串
-     * @throws Exception
+     * @throws Exception 异常
      */
     public static String mapToXmlDeep(Map<String, Object> data, String rootName) throws Exception {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();

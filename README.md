@@ -11,8 +11,8 @@
 ```xml
 <dependency>
     <groupId>com.github.cenbylin</groupId>
-    <artifactId>WxMessageSDK</artifactId>
-    <version>最新版本</version>
+    <artifactId>WxMessage-SDK</artifactId>
+    <version>0.1.1.RELEASE</version>
 </dependency>
 ```
 ### 1. 获取你的公众号开发配置

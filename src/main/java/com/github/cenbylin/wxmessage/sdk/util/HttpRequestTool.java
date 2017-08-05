@@ -15,12 +15,10 @@ import java.util.Map;
 public class HttpRequestTool {
 
     /**
-     * 使用Get方式获取数据 
-     *
-     * @param url
-     *            URL包括参数，http://HOST/XX?XX=XX&XXX=XXX 
-     * @param charset
-     * @return
+     * 使用Get方式获取数据
+     * @param url URL包括参数
+     * @param charset 编码
+     * @return 数据
      */
     public static String sendGet(String url, String charset) {
         String result = "";
@@ -64,7 +62,8 @@ public class HttpRequestTool {
      * POST请求，字符串形式数据  
      * @param url 请求地址  
      * @param param 请求数据  
-     * @param charset 编码方式  
+     * @param charset 编码方式
+     * @return 请求结果
      */
     public static String sendPost(String url, String param, String charset) {
 
@@ -119,7 +118,8 @@ public class HttpRequestTool {
      * POST请求，Map形式数据  
      * @param url 请求地址  
      * @param param 请求数据  
-     * @param charset 编码方式  
+     * @param charset 编码方式
+     * @return 请求结果
      */
     public static String sendPost(String url, Map<String, String> param,
                                   String charset) {
@@ -248,11 +248,11 @@ public class HttpRequestTool {
 
     /**
      * contentType格式示例：image/jpg
-     * @param accessToken
-     * @param in
-     * @param contentType
-     * @return
-     * @throws Exception
+     * @param accessToken access_token
+     * @param in 输入流
+     * @param contentType 示例：image/jpg
+     * @return 请求返回内容
+     * @throws Exception 异常
      */
     public static String uploadMedia(String accessToken, InputStream in, String contentType) throws Exception {
         String[] typeArray = contentType.split("/");
@@ -325,20 +325,5 @@ public class HttpRequestTool {
             System.out.println(error);
         }
         return null;
-    }
-
-    public static void main(String[] args) throws Exception {
-        //触发中控
-        while (InfoProvider.getAccessToken()==null) {
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        File f = new File("D:\\1.jpg");
-        InputStream in = new FileInputStream(f);
-        String res = uploadMedia(InfoProvider.getAccessToken(), in, "image/jpg");
-        System.out.println(res);
     }
 }
