@@ -4,7 +4,7 @@
 
     <groupId>com.github.cenbylin</groupId>
     <artifactId>WxMessage-SDK</artifactId>
-    <version>0.1.1.RELEASE</version>
+    <version>0.2</version>
     <packaging>jar</packaging>
 
     <name>WxMessage-SDK</name>

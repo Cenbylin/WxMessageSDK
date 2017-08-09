@@ -12,7 +12,6 @@ import java.util.Random;
  * Created by Cenbylin on 2017/7/9.
  */
 public class JobExecutiveController implements Runnable {
-    private Random r = new Random();
     Logger logger = Logger.getLogger(JobExecutiveController.class);
     //任务队列
     private LinkedList<MessageBean> jobQueue = new LinkedList<MessageBean>();

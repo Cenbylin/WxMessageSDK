@@ -4,9 +4,8 @@ import com.github.cenbylin.wxmessage.sdk.annotation.EvenMapping;
 import com.github.cenbylin.wxmessage.sdk.annotation.MessageMapping;
 import com.github.cenbylin.wxmessage.sdk.annotation.MessageType;
 import com.github.cenbylin.wxmessage.sdk.dev.BasicMessageProcessor;
+import org.apache.log4j.Logger;
 
-import javax.net.ssl.HandshakeCompletedListener;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.LinkedList;
@@ -17,6 +16,7 @@ import java.util.List;
  * Created by Cenbylin on 2017/8/9.
  */
 public class HandlerAdapter {
+    Logger logger = Logger.getLogger(HandlerAdapter.class);
     // 存储处理方法集
     private List<HandlerMethod> handlers = new LinkedList<HandlerMethod>();
 
@@ -90,17 +90,22 @@ public class HandlerAdapter {
      * @return
      */
     public Object handle(MessageBean msb, HandlerMethod handlerMethod) throws InvocationTargetException, IllegalAccessException {
+        if (handlerMethod==null){
+            logger.info("No matched handler");
+            return null;
+        }
         //初始化参数列表
         Object[] param = new Object[handlerMethod.params.length];
         if (MessageType.TEXT.equals(msb.getMsgType())){
             //参数列表 openid text
             int pre = 0;
             for (int i=0; i<handlerMethod.params.length; i++){
-                if (param[i] instanceof String){
+                if (String.class.isAssignableFrom(handlerMethod.params[i])){
                     switch (pre){
-                        case 0:param[i] = msb.getFromUserName();
-                        case 1:param[i] = msb.getContent();
+                        case 0:param[i] = msb.getFromUserName();break;
+                        case 1:param[i] = msb.getContent();break;
                     }
+                    pre++;
                 }
             }
             return handlerMethod.m.invoke(handlerMethod.processor, param);
@@ -108,11 +113,12 @@ public class HandlerAdapter {
             //参数列表 openid picurl
             int pre = 0;
             for (int i=0; i<handlerMethod.params.length; i++){
-                if (param[i] instanceof String){
+                if (String.class.isAssignableFrom(handlerMethod.params[i])){
                     switch (pre){
-                        case 0:param[i] = msb.getFromUserName();
-                        case 1:param[i] = msb.getPicUrl();
+                        case 0:param[i] = msb.getFromUserName();break;
+                        case 1:param[i] = msb.getPicUrl();break;
                     }
+                    pre++;
                 }
             }
             return handlerMethod.m.invoke(handlerMethod.processor, param);
@@ -120,13 +126,14 @@ public class HandlerAdapter {
             //参数列表 openid Title Description Url
             int pre = 0;
             for (int i=0; i<handlerMethod.params.length; i++){
-                if (param[i] instanceof String){
+                if (String.class.isAssignableFrom(handlerMethod.params[i])){
                     switch (pre){
-                        case 0:param[i] = msb.getFromUserName();
-                        case 1:param[i] = msb.getTitle();
-                        case 2:param[i] = msb.getDescription();
-                        case 3:param[i] = msb.getUrl();
+                        case 0:param[i] = msb.getFromUserName();break;
+                        case 1:param[i] = msb.getTitle();break;
+                        case 2:param[i] = msb.getDescription();break;
+                        case 3:param[i] = msb.getUrl();break;
                     }
+                    pre++;
                 }
             }
             return handlerMethod.m.invoke(handlerMethod.processor, param);
@@ -134,13 +141,14 @@ public class HandlerAdapter {
             //参数列表 openid MediaID Format Recognition
             int pre = 0;
             for (int i=0; i<handlerMethod.params.length; i++){
-                if (param[i] instanceof String){
+                if (String.class.isAssignableFrom(handlerMethod.params[i])){
                     switch (pre){
-                        case 0:param[i] = msb.getFromUserName();
-                        case 1:param[i] = msb.getMediaId();
-                        case 2:param[i] = msb.getFormat();
-                        case 3:param[i] = msb.getRecognition();
+                        case 0:param[i] = msb.getFromUserName();break;
+                        case 1:param[i] = msb.getMediaId();break;
+                        case 2:param[i] = msb.getFormat();break;
+                        case 3:param[i] = msb.getRecognition();break;
                     }
+                    pre++;
                 }
             }
             return handlerMethod.m.invoke(handlerMethod.processor, param);
@@ -148,12 +156,13 @@ public class HandlerAdapter {
             //参数列表 openid MediaID ThumbMediaId
             int pre = 0;
             for (int i=0; i<handlerMethod.params.length; i++){
-                if (param[i] instanceof String){
+                if (String.class.isAssignableFrom(handlerMethod.params[i])){
                     switch (pre){
-                        case 0:param[i] = msb.getFromUserName();
-                        case 1:param[i] = msb.getMediaId();
-                        case 2:param[i] = msb.getThumbMediaId();
+                        case 0:param[i] = msb.getFromUserName();break;
+                        case 1:param[i] = msb.getMediaId();break;
+                        case 2:param[i] = msb.getThumbMediaId();break;
                     }
+                    pre++;
                 }
             }
             return handlerMethod.m.invoke(handlerMethod.processor, param);
@@ -161,12 +170,13 @@ public class HandlerAdapter {
             //参数列表 openid MediaID ThumbMediaId
             int pre = 0;
             for (int i=0; i<handlerMethod.params.length; i++){
-                if (param[i] instanceof String){
+                if (String.class.isAssignableFrom(handlerMethod.params[i])){
                     switch (pre){
-                        case 0:param[i] = msb.getFromUserName();
-                        case 1:param[i] = msb.getMediaId();
-                        case 2:param[i] = msb.getThumbMediaId();
+                        case 0:param[i] = msb.getFromUserName();break;
+                        case 1:param[i] = msb.getMediaId();break;
+                        case 2:param[i] = msb.getThumbMediaId();break;
                     }
+                    pre++;
                 }
             }
             return handlerMethod.m.invoke(handlerMethod.processor, param);
@@ -174,14 +184,15 @@ public class HandlerAdapter {
             //参数列表 openid Location_X Location_Y Scale Label
             int pre = 0;
             for (int i=0; i<handlerMethod.params.length; i++){
-                if (param[i] instanceof String){
+                if (String.class.isAssignableFrom(handlerMethod.params[i])){
                     switch (pre){
-                        case 0:param[i] = msb.getFromUserName();
-                        case 1:param[i] = msb.getLocation_X();
-                        case 2:param[i] = msb.getLocation_Y();
-                        case 3:param[i] = msb.getScale();
-                        case 4:param[i] = msb.getLabel();
+                        case 0:param[i] = msb.getFromUserName();break;
+                        case 1:param[i] = msb.getLocation_X();break;
+                        case 2:param[i] = msb.getLocation_Y();break;
+                        case 3:param[i] = msb.getScale();break;
+                        case 4:param[i] = msb.getLabel();break;
                     }
+                    pre++;
                 }
             }
             return handlerMethod.m.invoke(handlerMethod.processor, param);

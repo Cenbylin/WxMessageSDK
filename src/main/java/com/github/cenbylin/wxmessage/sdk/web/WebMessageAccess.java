@@ -2,6 +2,7 @@ package com.github.cenbylin.wxmessage.sdk.web;
 
 import com.github.cenbylin.wxmessage.sdk.core.MessageBean;
 import com.github.cenbylin.wxmessage.sdk.core.JobExecutiveController;
+import com.github.cenbylin.wxmessage.sdk.dev.BasicMessageProcessor;
 import com.github.cenbylin.wxmessage.sdk.dev.WxConfig;
 import com.github.cenbylin.wxmessage.sdk.util.XMLUtil;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +16,8 @@ import java.util.Map;
 public class WebMessageAccess {
     JobExecutiveController jobExecutiveController;
 
-    public WebMessageAccess(WxConfig wxConfig) {
-        this.jobExecutiveController = new JobExecutiveController(wxConfig);
+    public WebMessageAccess(WxConfig wxConfig, BasicMessageProcessor basicMessageProcessor) {
+        this.jobExecutiveController = new JobExecutiveController(wxConfig, basicMessageProcessor);
     }
 
     /**
