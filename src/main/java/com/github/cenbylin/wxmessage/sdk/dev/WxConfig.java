@@ -3,7 +3,6 @@ package com.github.cenbylin.wxmessage.sdk.dev;
 import com.github.cenbylin.wxmessage.sdk.util.HttpRequestTool;
 import com.google.gson.Gson;
 
-import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -11,7 +10,6 @@ import java.util.Map;
  * Created by Cenbylin on 2017/7/29.
  */
 public abstract class WxConfig {
-    public LinkedList messageProcessorList = new LinkedList();
     private String accessToken;
     //此方法被覆盖，证明托管
     //定时任务线程
@@ -45,14 +43,6 @@ public abstract class WxConfig {
         }
     };
     private Thread thread = new Thread(runnable);
-
-    public LinkedList getMessageProcessorList() {
-        return messageProcessorList;
-    }
-
-    public void addProcessor(BasicMessageProcessor o){
-        messageProcessorList.add(o);
-    }
 
     public abstract String getAppID();
     public abstract String getSecret();

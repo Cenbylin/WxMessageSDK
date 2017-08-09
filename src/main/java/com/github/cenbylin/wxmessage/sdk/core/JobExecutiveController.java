@@ -5,6 +5,7 @@ import com.github.cenbylin.wxmessage.sdk.dev.WxConfig;
 import org.apache.log4j.Logger;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -19,15 +20,15 @@ public class JobExecutiveController implements Runnable {
     public volatile boolean wait;
 
     private WxConfig wxConfig;
-    private LinkedList<? extends BasicMessageProcessor> messageProcessorList;
+    private HandlerAdapter handlerAdapter = new HandlerAdapter();
     private ResultProcessor resultProcessor;
     /**
-     * 接收配置的控制器
+     * 接收配置的控制器，目前是单处理器
      * @param wxConfig 配置
      */
-    public JobExecutiveController(WxConfig wxConfig) {
+    public JobExecutiveController(WxConfig wxConfig, BasicMessageProcessor messageProcessor) {
         this.wxConfig = wxConfig;
-        this.messageProcessorList = wxConfig.getMessageProcessorList();
+        handlerAdapter.loadProcessor(messageProcessor);
         resultProcessor = new ResultProcessor(wxConfig);
         //创建后自启
         new Thread(this).start();
@@ -90,24 +91,12 @@ public class JobExecutiveController implements Runnable {
          * proccess
          */
         Object res = "";
-        if("text".equals(msb.getMsgType())){
-            logger.info("process text message:" + msb.getContent());
-            for(BasicMessageProcessor o:messageProcessorList){
-                res = o.doText(msb.getFromUserName(), msb.getContent());
-                resultProcessor.executeRes(res, msb.getFromUserName());
-            }
-        } else if ("link".equals(msb.getMsgType())){
-            logger.info("process link message:" + msb.getUrl());
-            for(BasicMessageProcessor o:messageProcessorList){
-                res = o.doLink(msb.getFromUserName(), msb.getUrl());
-                resultProcessor.executeRes(res, msb.getFromUserName());
-            }
-        } else if ("image".equals(msb.getMsgType())){
-            logger.info("process image message:" + msb.getPicUrl());
-            for(BasicMessageProcessor o:messageProcessorList){
-                res = o.doPic(msb.getFromUserName(), msb.getPicUrl());
-                resultProcessor.executeRes(res, msb.getFromUserName());
-            }
+        // 获得处理器
+        List<HandlerMethod> list = handlerAdapter.findHandlerMethods(msb);
+        // 执行处理器
+        for (HandlerMethod handlerMethod:list){
+            res = handlerAdapter.handle(msb, handlerMethod);
+            resultProcessor.executeRes(res, msb.getFromUserName());
         }
         logger.info("process finish");
     }
@@ -119,27 +108,13 @@ public class JobExecutiveController implements Runnable {
      * @throws Exception 异常
      */
     public String getJobRes(MessageBean msb) throws Exception {
-        //确定处理器(随机方式)
-        int length = messageProcessorList.size();
-        BasicMessageProcessor processor = messageProcessorList.get(r.nextInt(length));
         /**
          * proccess
          */
         Object res = "";
-        if("text".equals(msb.getMsgType())) {
-            logger.info("process text message:" + msb.getContent());
-            res = processor.doText(msb.getFromUserName(), msb.getContent());
-            return resultProcessor.convertRes(res, msb.getFromUserName(), msb.getToUserName());
-        } else if ("link".equals(msb.getMsgType())) {
-            logger.info("process link message:" + msb.getUrl());
-            res = processor.doLink(msb.getFromUserName(), msb.getUrl());
-            return resultProcessor.convertRes(res, msb.getFromUserName(), msb.getToUserName());
-        } else if ("image".equals(msb.getMsgType())) {
-            logger.info("process image message:" + msb.getPicUrl());
-            res = processor.doPic(msb.getFromUserName(), msb.getPicUrl());
-            return resultProcessor.convertRes(res, msb.getFromUserName(), msb.getToUserName());
-        }
+        HandlerMethod handlerMethod = handlerAdapter.findOneHandlerMethod(msb);
+        res = handlerAdapter.handle(msb, handlerMethod);
         logger.info("process finish");
-        return null;
+        return resultProcessor.convertRes(res, msb.getFromUserName(), msb.getToUserName());
     }
 }

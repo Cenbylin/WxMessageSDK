@@ -12,21 +12,70 @@ public class MessageBean {
 	private String PicUrl;
 	private String MediaId;// 图片、语音共有
 	private String Format;
+	private String Location_X;
+	private String Location_Y;
+	private String Scale;
+	private String Label;
+	private String Recognition;
 	private String ThumbMediaId;// 视频、小视频共有
 	private String Event;
 	private String EventKey;
 	private String ticket;
-	private String url;//链接消息
+	private String Url;//链接消息
+	private String Title;//链接消息
+	private String Description;//链接消息
+
 
     public String getUrl() {
-        return url;
+        return Url;
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        this.Url = url;
+    }
+
+	public String getRecognition() {
+		return Recognition;
+	}
+
+	public void setRecognition(String recognition) {
+		Recognition = recognition;
+	}
+
+    public String getLocation_X() {
+        return Location_X;
+    }
+
+    public void setLocation_X(String location_X) {
+        Location_X = location_X;
+    }
+
+    public String getLocation_Y() {
+        return Location_Y;
+    }
+
+    public void setLocation_Y(String location_Y) {
+        Location_Y = location_Y;
+    }
+
+    public String getScale() {
+        return Scale;
+    }
+
+    public void setScale(String scale) {
+        Scale = scale;
+    }
+
+    public String getLabel() {
+        return Label;
+    }
+
+    public void setLabel(String label) {
+        Label = label;
     }
 
     /**
+
 	 * 用属性集合map初始化MessageBean
 	 * 
 	 * @param map map
@@ -41,10 +90,18 @@ public class MessageBean {
 		PicUrl = map.get("PicUrl");
 		MediaId = map.get("MediaId");
 		Format = map.get("Format");
+		Recognition = map.get("Recognition");
 		ThumbMediaId = map.get("ThumbMediaId");
 		Event = map.get("Event");
 		EventKey = map.get("EventKey");
-		url = map.get("Url");
+		Url = map.get("Url");
+        Title = map.get("Title");
+        Description = map.get("Description");
+        ticket = map.get("ticket");
+        Location_X = map.get("Location_X");
+        Location_Y = map.get("Location_Y");
+        Scale = map.get("Scale");
+        Label = map.get("Label");
 	}
 
 	@Override
@@ -53,7 +110,23 @@ public class MessageBean {
 		return super.toString();
 	}
 
-	public String getToUserName() {
+    public String getTitle() {
+        return Title;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+    public String getToUserName() {
 		return ToUserName;
 	}
 
