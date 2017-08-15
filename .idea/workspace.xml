@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dbd1cc9b-d70e-46cc-a3f2-6a12c087d474" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/core/HandlerAdapter.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/core/HandlerAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/core/HandlerMethod.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/core/HandlerMethod.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/core/MessageBean.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/core/MessageBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/web/WebMessageAccess.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/web/WebMessageAccess.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,43 +17,25 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="JobExecutiveController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/core/JobExecutiveController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1026">
-              <caret line="60" column="27" lean-forward="false" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebMessageAccess.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/web/WebMessageAccess.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="98" column="19" lean-forward="false" selection-start-line="98" selection-start-column="19" selection-end-line="98" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="24">
-                <caret line="13" column="35" lean-forward="false" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+              <first_editor relative-caret-position="301">
+                <caret line="155" column="1" lean-forward="true" selection-start-line="155" selection-start-column="1" selection-end-line="155" selection-end-column="1" />
                 <folding>
-                  <marker date="1501923185838" expanded="true" signature="266:403" ph="..." />
-                  <marker date="1501923185838" expanded="true" signature="657:681" ph="/**...*/" />
-                  <marker date="1501923185838" expanded="false" signature="751:762" ph=" { " />
-                  <marker date="1501923185838" expanded="false" signature="781:787" ph=" }" />
-                  <marker date="1501923185838" expanded="false" signature="817:828" ph=" { " />
-                  <marker date="1501923185838" expanded="false" signature="848:854" ph=" }" />
-                  <marker date="1501923185838" expanded="true" signature="1239:1648" ph="{...}" />
-                  <marker date="1501923185838" expanded="true" signature="1990:2036" ph="..." />
-                  <marker date="1501923185838" expanded="true" signature="2143:2189" ph="..." />
-                  <marker date="1501923185838" expanded="true" signature="2894:2972" ph="/**...*/" />
+                  <marker date="1502788559368" expanded="true" signature="266:403" ph="..." />
+                  <marker date="1502788559368" expanded="true" signature="657:681" ph="/**...*/" />
+                  <marker date="1502788559368" expanded="false" signature="751:762" ph=" { " />
+                  <marker date="1502788559368" expanded="false" signature="781:787" ph=" }" />
+                  <marker date="1502788559368" expanded="false" signature="817:828" ph=" { " />
+                  <marker date="1502788559368" expanded="false" signature="848:854" ph=" }" />
+                  <marker date="1502788559368" expanded="true" signature="1642:2052" ph="{...}" />
+                  <marker date="1502788559368" expanded="true" signature="2168:2498" ph="{...}" />
+                  <marker date="1502788559368" expanded="true" signature="2591:2641" ph="{...}" />
+                  <marker date="1502788559368" expanded="true" signature="2634:2641" ph="{...}" />
+                  <marker date="1502788559368" expanded="true" signature="3056:3153" ph="..." />
+                  <marker date="1502788559368" expanded="true" signature="3636:3714" ph="/**...*/" />
                 </folding>
               </first_editor>
               <second_editor />
@@ -66,83 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EvenMapping.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/annotation/EvenMapping.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="14" column="10" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MessageBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/core/MessageBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2112">
-              <caret line="118" column="33" lean-forward="false" selection-start-line="118" selection-start-column="33" selection-end-line="118" selection-end-column="33" />
-              <folding>
-                <element signature="e#2737#2738#0" expanded="true" />
-                <element signature="e#2782#2783#0" expanded="true" />
-                <element signature="e#2808#2809#0" expanded="true" />
-                <element signature="e#2841#2842#0" expanded="true" />
-                <element signature="e#2864#2865#0" expanded="true" />
-                <element signature="e#2911#2912#0" expanded="true" />
-                <element signature="e#2939#2940#0" expanded="true" />
-                <element signature="e#2972#2973#0" expanded="true" />
-                <element signature="e#2995#2996#0" expanded="true" />
-                <element signature="e#3042#3043#0" expanded="true" />
-                <element signature="e#3070#3071#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HandlerMethod.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/core/HandlerMethod.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="28" column="82" lean-forward="false" selection-start-line="28" selection-start-column="78" selection-end-line="28" selection-end-column="82" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EvenType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/annotation/EvenType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="8" column="45" lean-forward="false" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MessageType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/annotation/MessageType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="20" column="43" lean-forward="false" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="HandlerAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/core/HandlerAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24">
-              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="326">
+              <caret line="249" column="37" lean-forward="false" selection-start-line="249" selection-start-column="27" selection-end-line="249" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#772#787#0" expanded="true" />
@@ -215,7 +120,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/util/XMLUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/core/ResultProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/util/HttpRequestTool.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/dev/BasicMessageProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/dev/AbstractMessageProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/dev/WxConfig.java" />
@@ -229,6 +133,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/core/HandlerMethod.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/web/WebMessageAccess.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/core/HandlerAdapter.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -1038,7 +943,7 @@
       <workItem from="1502281720255" duration="9949000" />
       <workItem from="1502340007242" duration="598000" />
       <workItem from="1502515633854" duration="410000" />
-      <workItem from="1502781328346" duration="5192000" />
+      <workItem from="1502781328346" duration="6685000" />
     </task>
     <task id="LOCAL-00001" summary="完成认证号的消息收发">
       <created>1501475479762</created>
@@ -1117,11 +1022,18 @@
       <option name="project" value="LOCAL" />
       <updated>1502295413456</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="调试事件消息。下一步考虑自定义菜单">
+      <created>1502787135108</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1502787135108</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95441000" />
+    <option name="totallyTimeSpent" value="96934000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1166,7 +1078,8 @@
     <MESSAGE value="上传到central Repository" />
     <MESSAGE value="重构成注解方式" />
     <MESSAGE value="修复若干BUG, 基本消息初步测试通过。" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复若干BUG, 基本消息初步测试通过。" />
+    <MESSAGE value="调试事件消息。下一步考虑自定义菜单" />
+    <option name="LAST_COMMIT_MESSAGE" value="调试事件消息。下一步考虑自定义菜单" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1454,34 +1367,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/core/JobExecutiveController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1026">
           <caret line="60" column="27" lean-forward="false" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/annotation/EvenType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="8" column="45" lean-forward="false" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/annotation/MessageType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="20" column="43" lean-forward="false" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -1494,10 +1383,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/annotation/EvenMapping.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
+        <state relative-caret-position="264">
           <caret line="14" column="10" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/annotation/MessageType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="20" column="43" lean-forward="false" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/annotation/EvenType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="8" column="45" lean-forward="false" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -1532,8 +1445,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/cenbylin/wxmessage/sdk/core/HandlerAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="326">
+          <caret line="249" column="37" lean-forward="false" selection-start-line="249" selection-start-column="27" selection-end-line="249" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#772#787#0" expanded="true" />
@@ -1545,19 +1458,21 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="24">
-            <caret line="13" column="35" lean-forward="false" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+          <first_editor relative-caret-position="301">
+            <caret line="155" column="1" lean-forward="true" selection-start-line="155" selection-start-column="1" selection-end-line="155" selection-end-column="1" />
             <folding>
-              <marker date="1501923185838" expanded="true" signature="266:403" ph="..." />
-              <marker date="1501923185838" expanded="true" signature="657:681" ph="/**...*/" />
-              <marker date="1501923185838" expanded="false" signature="751:762" ph=" { " />
-              <marker date="1501923185838" expanded="false" signature="781:787" ph=" }" />
-              <marker date="1501923185838" expanded="false" signature="817:828" ph=" { " />
-              <marker date="1501923185838" expanded="false" signature="848:854" ph=" }" />
-              <marker date="1501923185838" expanded="true" signature="1239:1648" ph="{...}" />
-              <marker date="1501923185838" expanded="true" signature="1990:2036" ph="..." />
-              <marker date="1501923185838" expanded="true" signature="2143:2189" ph="..." />
-              <marker date="1501923185838" expanded="true" signature="2894:2972" ph="/**...*/" />
+              <marker date="1502788559368" expanded="true" signature="266:403" ph="..." />
+              <marker date="1502788559368" expanded="true" signature="657:681" ph="/**...*/" />
+              <marker date="1502788559368" expanded="false" signature="751:762" ph=" { " />
+              <marker date="1502788559368" expanded="false" signature="781:787" ph=" }" />
+              <marker date="1502788559368" expanded="false" signature="817:828" ph=" { " />
+              <marker date="1502788559368" expanded="false" signature="848:854" ph=" }" />
+              <marker date="1502788559368" expanded="true" signature="1642:2052" ph="{...}" />
+              <marker date="1502788559368" expanded="true" signature="2168:2498" ph="{...}" />
+              <marker date="1502788559368" expanded="true" signature="2591:2641" ph="{...}" />
+              <marker date="1502788559368" expanded="true" signature="2634:2641" ph="{...}" />
+              <marker date="1502788559368" expanded="true" signature="3056:3153" ph="..." />
+              <marker date="1502788559368" expanded="true" signature="3636:3714" ph="/**...*/" />
             </folding>
           </first_editor>
           <second_editor />

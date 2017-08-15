@@ -37,11 +37,24 @@ public class MyConfig extends WxConfig {
 }
 ```
 ### 3.编写处理器代码
-继承AbstractMessageProcessor即可，可以选择覆盖如下几个方法：
+继承AbstractMessageProcessor即可，采用注解的形式绑定处理方法。
 
-![method](./project-resource/method.png)
+当接收了微信消息，会调用相应的这些方法，将一些信息作为实参传入。
 
-当接收了微信消息，会调用相应的这些方法；返回值对应了不同的微信回复内容。
+| 消息类型 | 传入参数 |
+|--------|--------|
+|TEXT|openid text|
+|IMAGE|openid picurl|
+|LINK|openid Title Description Url|
+|VOICE|openid MediaID Format Recognition|
+|VIDEO|openid MediaID ThumbMediaId|
+|SHORTVIDEO|openid MediaID ThumbMediaId|
+|LOCATION|openid Location_X Location_Y Scale Label|
+|EVEN_SUBSCRIBE|openid qrscene_二维码 ticket|
+|EVEN_UNSUBSCRIBE|openid|
+|EVEN_LOCATION|openid Latitude Longitude Precision|
+
+返回值对应了不同的微信回复内容。
 
 | 返回类型 | 回复 |
 |--------|--------|
@@ -54,9 +67,9 @@ public class MyConfig extends WxConfig {
 ```java
 @Component
 public class SimpleProcessor extends AbstractMessageProcessor {
-    @Override
+    @MessageMapping(MessageType.TEXT)
     public Object doText(String openid, String text) {
-        //回复图文
+        // 回复图文
         NewsResBean n = new NewsResBean();
         n.addArticle(
                 "标题1",
@@ -72,6 +85,25 @@ public class SimpleProcessor extends AbstractMessageProcessor {
         );
         return n;
     }
+    
+    @MessageMapping(MessageType.IMAGE)
+    public Object doImg(String openid, String picurl) throws Exception {
+        // 获得输入流
+        URL url = new URL("picurl");
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setDoInput(true);
+        conn.connect();
+        InputStream is = conn.getInputStream();
+        // 回复图片
+        ImageResBean res = new ImageResBean(is,"jpg");
+        return res;
+    }
+    
+    @EvenMapping(EvenType.EVEN_SUBSCRIBE)
+    public Object doSubscribe(String openid) {
+        // 回复文本
+        return "欢迎关注本公众号";
+    }
 }
 ```
 
@@ -81,18 +113,13 @@ public class SimpleProcessor extends AbstractMessageProcessor {
 #### 4.1 集成spring方式（推荐）
 只需要在applicationContext.xml中增加如下配置：
 ```xml
-<!-- 配置 -->
-<bean id="wxconfig" class="cn.cenbylin.mp.message.MyConfig"/>
-<!-- 消息接入的对象 -->
-<bean class="com.github.cenbylin.wxmessage.sdk.web.WebMessageAccess">
-    <constructor-arg ref="wxconfig"/>
-</bean>
-<!-- BeanPostPrcessor -->
-<bean class="com.github.cenbylin.wxmessage.sdk.support.MsgBeanPostPrcessorImpl">
-    <constructor-arg ref="wxconfig"/>
-</bean>
-<!-- 消息拦截器包扫描 -->
-<context:component-scan base-package="cn.cenbylin.mp.message.processor" />
+<!--配置-->
+    <bean id="wxconfig" class="cn.cenbylin.mp.message.MyConfig"/>
+    <bean id="processor" class="cn.cenbylin.mp.message.processor.SimpleProcessor"/>
+    <bean class="com.github.cenbylin.wxmessage.sdk.web.WebMessageAccess">
+        <constructor-arg ref="wxconfig"/>
+        <constructor-arg ref="processor"/>
+    </bean>
 ```
 #### 4.2 普通模式
 同样地生成消息接入的WebMessageAccess对象，不过这个实例需要自行管理
@@ -107,12 +134,8 @@ WxConfig myConfig = new WxConfig() {
             return "{secret}";
         }
     };
-// 添加自定义处理器
-myConfig.addProcessor(new SimpleProcessor());
-myConfig.addProcessor(new SimpleProcessor1());
-myConfig.addProcessor(new SimpleProcessor2());
 // 创建消息接入
-WebMessageAccess webMessageAccess = new WebMessageAccess(myConfig);
+WebMessageAccess webMessageAccess = new WebMessageAccess(myConfig, new SimpleProcessor());
 ```
 ### 5. 接入
 不管是用servlet还是springmvc等方式，只需要在微信消息处理的地方托管WebMessageAccess
