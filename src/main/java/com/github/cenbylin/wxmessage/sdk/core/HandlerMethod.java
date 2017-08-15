@@ -43,7 +43,7 @@ public class HandlerMethod {
         //类型匹配
         if (type.equals(msb.getMsgType())){
             //事件不匹配
-            if ("even".equals(msb.getEvent()) && !even.equals(msb.getEvent())){
+            if ("event".equals(msb.getMsgType()) && !even.equals(msb.getEvent())){
                 return false;
             }
             return true;

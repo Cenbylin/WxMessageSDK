@@ -20,6 +20,9 @@ public class MessageBean {
 	private String ThumbMediaId;// 视频、小视频共有
 	private String Event;
 	private String EventKey;
+	private String Latitude;
+	private String Longitude;
+	private String Precision;
 	private String ticket;
 	private String Url;//链接消息
 	private String Title;//链接消息
@@ -102,6 +105,9 @@ public class MessageBean {
         Location_Y = map.get("Location_Y");
         Scale = map.get("Scale");
         Label = map.get("Label");
+		Latitude = map.get("Latitude");
+		Longitude = map.get("Longitude");
+		Precision = map.get("Precision");
 	}
 
 	@Override
@@ -110,7 +116,31 @@ public class MessageBean {
 		return super.toString();
 	}
 
-    public String getTitle() {
+	public String getLatitude() {
+		return Latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		Latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return Longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		Longitude = longitude;
+	}
+
+	public String getPrecision() {
+		return Precision;
+	}
+
+	public void setPrecision(String precision) {
+		Precision = precision;
+	}
+
+	public String getTitle() {
         return Title;
     }
 

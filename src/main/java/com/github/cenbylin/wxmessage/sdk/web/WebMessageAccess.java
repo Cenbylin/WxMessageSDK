@@ -95,6 +95,9 @@ public class WebMessageAccess {
      * @throws Exception 异常
      */
     public void writeString(HttpServletResponse response, String content) throws Exception{
+        if (content==null){
+            return;
+        }
         PrintWriter out = response.getWriter();
         out.write(content);
         out.flush();

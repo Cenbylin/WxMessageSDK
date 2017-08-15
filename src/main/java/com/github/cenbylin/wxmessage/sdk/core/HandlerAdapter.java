@@ -1,6 +1,7 @@
 package com.github.cenbylin.wxmessage.sdk.core;
 
 import com.github.cenbylin.wxmessage.sdk.annotation.EvenMapping;
+import com.github.cenbylin.wxmessage.sdk.annotation.EvenType;
 import com.github.cenbylin.wxmessage.sdk.annotation.MessageMapping;
 import com.github.cenbylin.wxmessage.sdk.annotation.MessageType;
 import com.github.cenbylin.wxmessage.sdk.dev.BasicMessageProcessor;
@@ -47,8 +48,8 @@ public class HandlerAdapter {
             if (evenAnn!=null){
                 handlers.add(new HandlerMethod(
                         processor,
-                        "even",
-                        msgAnn.value(),
+                        "event",
+                        evenAnn.value(),
                         m,
                         m.getParameterTypes()
                 ));
@@ -196,7 +197,62 @@ public class HandlerAdapter {
                 }
             }
             return handlerMethod.m.invoke(handlerMethod.processor, param);
+        }else{
+            //不是事件消息，无执行结果
+            if (!("event".equals(msb.getMsgType()))){
+                return null;
+            }
         }
+
+        //事件类型
+        if (EvenType.EVEN_SUBSCRIBE.equals(msb.getEvent())
+                || EvenType.EVEN_SCAN.equals(msb.getEvent())){
+            //参数列表 openid qrscene_二维码 ticket
+            int pre = 0;
+            for (int i=0; i<handlerMethod.params.length; i++){
+                if (String.class.isAssignableFrom(handlerMethod.params[i])){
+                    switch (pre){
+                        case 0:param[i] = msb.getFromUserName();break;
+                        case 1:param[i] = msb.getEventKey();break;
+                        case 2:param[i] = msb.getTicket();break;
+                    }
+                    pre++;
+                }
+            }
+            return handlerMethod.m.invoke(handlerMethod.processor, param);
+        }else if (EvenType.EVEN_UNSUBSCRIBE.equals(msb.getEvent())){
+            //参数列表 openid
+            int pre = 0;
+            for (int i=0; i<handlerMethod.params.length; i++){
+                if (String.class.isAssignableFrom(handlerMethod.params[i])){
+                    switch (pre){
+                        case 0:param[i] = msb.getFromUserName();break;
+                    }
+                    pre++;
+                }
+            }
+            return handlerMethod.m.invoke(handlerMethod.processor, param);
+        }else if (EvenType.EVEN_LOCATION.equals(msb.getEvent())){
+            //参数列表 openid Latitude Longitude Precision
+            int pre = 0;
+            for (int i=0; i<handlerMethod.params.length; i++){
+                if (String.class.isAssignableFrom(handlerMethod.params[i])){
+                    switch (pre){
+                        case 0:param[i] = msb.getFromUserName();break;
+                        case 1:param[i] = msb.getLatitude();break;
+                        case 2:param[i] = msb.getLongitude();break;
+                        case 3:param[i] = msb.getPrecision();break;
+                    }
+                    pre++;
+                }
+            }
+            return handlerMethod.m.invoke(handlerMethod.processor, param);
+        }else if (EvenType.EVEN_CLICK.equals(msb.getEvent())){
+
+        }else if (EvenType.EVEN_VIEW.equals(msb.getEvent())){
+
+        }
+
         return null;
     }
 }
